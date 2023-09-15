@@ -5,6 +5,8 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+use App\Http\Controllers\AR11Controller;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,5 +36,15 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/services', function() {
+    return Inertia::render('Services/Index');
+});
+
+Route::get('/services/AR-11', function() {
+    return Inertia::render('Services/AR-11');
+});
+
+Route::post('/services/AR-11', [AR11Controller::class, 'store']);
 
 require __DIR__.'/auth.php';

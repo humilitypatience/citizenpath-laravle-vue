@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 use App\Http\Controllers\AR11Controller;
+use App\Http\Controllers\G1145Controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,10 +42,12 @@ Route::get('/services', function() {
     return Inertia::render('Services/Index');
 });
 
-Route::get('/services/AR-11', function() {
-    return Inertia::render('Services/AR-11');
-});
+Route::get('/services/AR-11', [AR11Controller::class, 'index']);
 
 Route::post('/services/AR-11', [AR11Controller::class, 'store']);
+
+Route::get('/services/G-1145', [G1145Controller::class, 'index']);
+
+Route::post('/services/G-1145', [G1145Controller::class, 'store']);
 
 require __DIR__.'/auth.php';
